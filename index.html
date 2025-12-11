@@ -6,11 +6,11 @@
     <title>VIP आमंत्रण - अहिरोरी</title>
     <link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
-  <style>
+    <style>
         :root {
             --primary-red: #8B0000;
             --primary-orange: #FF8C00;
+            --primary-color: #8B0000;
             --bg-cream: #FFF8E7;
             --text-dark: #2c1a1a;
         }
@@ -30,7 +30,6 @@
             min-height: 100vh;
         }
 
-        /* --- 1. कंट्रोल पैनल (मोबाइल फ्रेंडली) --- */
         .controls {
             background: white;
             padding: 20px;
@@ -125,12 +124,165 @@
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(255, 140, 0, 0.4);
         }
-       </style>
+
+        #preview-wrapper {
+            width: 100%;
+            max-width: 800px;
+            overflow: hidden;
+        }
+
+        #letter-card {
+            background: linear-gradient(135deg, #FFF8E7 0%, #FFF5DC 100%);
+            border: 8px solid var(--primary-red);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .corner-decoration {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--primary-orange);
+        }
+
+        .corner-decoration.top-left {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .corner-decoration.top-right {
+            top: 20px;
+            right: 20px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .corner-decoration.bottom-left {
+            bottom: 20px;
+            left: 20px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .corner-decoration.bottom-right {
+            bottom: 20px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
+        }
+
+        .header-text {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .om-namah {
+            display: block;
+            color: var(--primary-red);
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .main-title {
+            color: var(--primary-red);
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .recipient-section {
+            margin: 30px 0;
+            font-size: 20px;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        .content-body {
+            margin: 25px 0;
+            line-height: 2;
+            font-size: 18px;
+            text-align: justify;
+        }
+
+        .content-body p {
+            margin-bottom: 15px;
+        }
+
+        .highlight-text {
+            color: var(--primary-red);
+            font-weight: bold;
+        }
+
+        .schedule-box {
+            background: white;
+            border: 3px solid var(--primary-orange);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .date-row {
+            margin: 12px 0;
+            font-size: 20px;
+            line-height: 1.6;
+        }
+
+        .date-label {
+            color: var(--primary-red);
+            font-weight: bold;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: right;
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        .contact-strip {
+            background: var(--primary-orange);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        @media (max-width: 600px) {
+            #letter-card {
+                padding: 25px;
+                border-width: 5px;
+            }
+
+            .main-title {
+                font-size: 24px;
+            }
+
+            .content-body, .recipient-section {
+                font-size: 16px;
+            }
+
+            .date-row {
+                font-size: 16px;
+            }
+        }
+    </style>
 </head>
 <body>
-
     <div class="controls">
-        <h3>निमंत्रण</h3>
+        <h3>निमंत्रण बनाएं</h3>
         <div class="input-group">
             <input type="text" id="guestName" placeholder="अतिथि का नाम (उदा: माननीय विधायक जी)" oninput="updateLetter()">
             <input type="text" id="guestPost" placeholder="पद/स्थान (उदा: सदर विधान सभा, हरदोई)" oninput="updateLetter()">
@@ -145,7 +297,6 @@
 
     <div id="preview-wrapper">
         <div id="letter-card">
-            
             <div class="corner-decoration top-left"></div>
             <div class="corner-decoration top-right"></div>
             <div class="corner-decoration bottom-left"></div>
@@ -170,7 +321,7 @@
                     अत्यंत हर्ष का विषय है कि <strong>नैमिषारण्य क्षेत्र</strong> स्थित <strong>अहिरोरी बाबा श्री भूतनाथ</strong> के सिद्ध दरबार, <strong>श्री महर्षि मंगलगिरि आश्रम</strong> में <span class="highlight-text">'12वीं श्री रुद्र महायज्ञ'</span> का भव्य आयोजन सुनिश्चित हुआ है।
                 </p>
                 <p>
-                    यह पुनीत अनुष्ठान <strong>6 फरवरी से 15 फरवरी 2025</strong> तक संपन्न होगा। आपसे करबद्ध प्रार्थना है कि आप अपने व्यस्त समय में से कुछ क्षण निकालकर इस धर्म-यज्ञ में पधारें और हमारा मान बढ़ाएं।
+                    यह पुनीत अनुष्ठान <strong>6 फरवरी से 15 फरवरी 2025</strong> तक संपन्न होगा। आपसे करबद्ध प्रार्थना है कि आप अपने व्यस्त समय में से कुछ क्षण निकालकर इस धर्म-यज्ञ में पधारें और हमारा मान बढ़ाएं।
                 </p>
             </div>
 
@@ -195,68 +346,71 @@
             </div>
 
             <div class="contact-strip">
-               <strong>  संपर्क: रुद्रेश शुक्ल (9580094376), अमित सिंह 'पिन्टू' (9792488383)</strong>
+                <strong>संपर्क: रुद्रेश शुक्ल (9580094376), अमित सिंह 'पिन्टू' (9792488383)</strong>
             </div>
         </div>
     </div>
 
     <script>
-        // 1. नाम अपडेट करने का फंक्शन
-        function updateCard() {
-            document.getElementById('outName').innerText = document.getElementById('inpName').value || "श्री/श्रीमती .......................... जी";
-            document.getElementById('outPost').innerText = document.getElementById('inpPost').value || "...........................................";
+        function updateLetter() {
+            const name = document.getElementById('guestName').value;
+            const post = document.getElementById('guestPost').value;
+            
+            document.getElementById('displayName').innerText = name || "श्री/श्रीमती .......................... जी";
+            document.getElementById('displayPost').innerText = post || "...........................................";
         }
 
-        // 2. मोबाइल स्क्रीन पर कार्ड को फिट करने का जादू (Scaling Logic)
-        function fitToScreen() {
-            const card = document.getElementById('card-capture');
-            const container = document.getElementById('preview-container');
+        function downloadImage() {
+            const card = document.getElementById('letter-card');
             
-            // मोबाइल की चौड़ाई नापो
-            const screenWidth = window.innerWidth;
-            const margin = 20; // थोड़ा मार्जिन
-            const cardWidth = 800; // कार्ड की असली चौड़ाई
-
-            // स्केल फैक्टर निकालो (जैसे: 0.45 गुना छोटा करो)
-            let scale = (screenWidth - margin) / cardWidth;
-            
-            // अगर स्क्रीन बड़ी है (लैपटॉप), तो स्केल 1 ही रखो
-            if (scale > 1) scale = 1;
-
-            // CSS ट्रांसफॉर्म लगाओ
-            card.style.transform = `scale(${scale})`;
-            
-            // स्केल होने के बाद नीचे बहुत खाली जगह बच जाती है, उसे ठीक करो
-            const newHeight = card.offsetHeight * scale;
-            container.style.height = `${newHeight}px`;
-        }
-
-        // पेज लोड होते ही फिट करो और जब रोटेट हो तब भी
-        window.onload = fitToScreen;
-        window.onresize = fitToScreen;
-
-        // 3. डाउनलोड फंक्शन (HD क्वालिटी के लिए ट्रिक)
-        function downloadCard() {
-            const card = document.getElementById('card-capture');
-            
-            // (A) डाउनलोड से पहले कार्ड का स्केल हटा दो (ताकि इमेज धुंधली न हो)
-            const currentTransform = card.style.transform;
-            card.style.transform = 'none'; // अस्थायी रूप से असली साइज़
-            
-            // (B) कैनवास बनाओ
             html2canvas(card, {
-                scale: 2, // 2x क्वालिटी (Sharp Text)
+                scale: 2,
                 useCORS: true,
-                scrollY: -window.scrollY // स्क्रॉल की वजह से कटने से बचाए
+                backgroundColor: '#FFF8E7',
+                scrollY: -window.scrollY
             }).then(canvas => {
-                // (C) लिंक बनाओ और डाउनलोड करो
                 const link = document.createElement('a');
-                link.download = 'VIP_Invitation_Ahirori.jpg';
-                link.href = canvas.toDataURL("image/jpeg", 0.9);
+                link.download = 'VIP_Nimantran_Ahirori.jpg';
+                link.href = canvas.toDataURL("image/jpeg", 0.95);
                 link.click();
+            });
+        }
 
-                // (D) वापस पहले जैसा छोटा कर दो (मोबाइल व्यू)
-                card.style.transform = currentTransform;
+        function copyText() {
+            const name = document.getElementById('guestName').value || "श्री/श्रीमती .......................... जी";
+            const post = document.getElementById('guestPost').value || "...........................................";
+            
+            const text = `॥ श्री गणेशाय नमः ॥ ॥ ॐ नमः शिवाय ॥
+
+१२वीं श्री रुद्र महायज्ञ महोत्सव
+
+प्रति,
+${name}
+${post}
+
+विषय: महाशिवरात्रि पर्व पर महायज्ञ में गरिमामयी उपस्थिति हेतु।
+
+महोदय/महोदया,
+
+अत्यंत हर्ष का विषय है कि नैमिषारण्य क्षेत्र स्थित अहिरोरी बाबा श्री भूतनाथ के सिद्ध दरबार, श्री महर्षि मंगलगिरि आश्रम में '12वीं श्री रुद्र महायज्ञ' का भव्य आयोजन सुनिश्चित हुआ है।
+
+यह पुनीत अनुष्ठान 6 फरवरी से 15 फरवरी 2025 तक संपन्न होगा। आपसे करबद्ध प्रार्थना है कि आप अपने व्यस्त समय में से कुछ क्षण निकालकर इस धर्म-यज्ञ में पधारें और हमारा मान बढ़ाएं।
+
+॥ कार्यक्रम की रूपरेखा ॥
+कलश यात्रा: 6 फरवरी 2026
+हवन पूर्णाहुति: 14 फरवरी 2026
+रूद्राभिषेक/भंडारा: 15 फरवरी 2026
+
+विनीत,
+समस्त भक्त वृन्द एवं आयोजक मंडल
+श्री महर्षि मंगलगिरि सेवा समिति, अहिरोरी
+
+संपर्क: रुद्रेश शुक्ल (9580094376), अमित सिंह 'पिन्टू' (9792488383)`;
+
+            navigator.clipboard.writeText(text).then(() => {
+                alert('✅ टेक्स्ट कॉपी हो गया!');
+            }).catch(() => {
+                alert('❌ कॉपी नहीं हो पाया। कृपया फिर से कोशिश करें।');
             });
         }
     </script>
