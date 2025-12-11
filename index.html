@@ -2,221 +2,163 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>VIP निमंत्रण - अहिरोरी</title>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP आमंत्रण - अहिरोरी</title>
     <link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <style>
-        :root {
-            --primary-color: #8B0000; /* गहरा लाल */
-            --accent-color: #FF8C00; /* नारंगी */
-            --bg-color: #FFF8E7; /* क्रीम */
-            --text-color: #2c1a1a;
-        }
-
         body {
             font-family: 'Tiro Devanagari Hindi', serif;
-            background-color: #e0e0e0;
+            background-color: #f3f4f6;
             margin: 0;
             padding: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
         }
 
-        /* --- कंट्रोल पैनल (इनपुट बॉक्स) --- */
+        /* --- 1. कंट्रोल पैनल (मोबाइल फ्रेंडली) --- */
         .controls {
             background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             width: 100%;
-            max-width: 600px; /* मोबाइल पर फुल विड्थ */
+            max-width: 500px;
+            margin-bottom: 20px;
             box-sizing: border-box;
             text-align: center;
-            z-index: 100;
         }
 
-        .controls h3 {
-            margin-top: 0;
-            color: var(--primary-color);
-        }
-
-        /* मोबाइल पर इनपुट बॉक्स एक के नीचे एक आएंगे */
-        .input-group {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        input {
+        .input-group input {
+            width: 100%;
             padding: 12px;
-            border: 2px solid #ddd;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
             border-radius: 8px;
             font-size: 16px;
-            width: 100%;
-            box-sizing: border-box; /* पैडिंग को width के अंदर रखता है */
-            outline: none;
-            transition: border-color 0.3s;
+            box-sizing: border-box; /* फिक्स */
         }
 
-        input:focus {
-            border-color: var(--accent-color);
-        }
-
-        /* बटन स्टाइल */
-        .btn-group {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        button {
-            padding: 12px 20px;
+        .btn-download {
+            background-color: #8B0000;
+            color: white;
             border: none;
+            padding: 12px 25px;
             border-radius: 50px;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            flex: 1;
-            min-width: 140px;
-            transition: transform 0.2s;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
         }
 
-        button:active { transform: scale(0.95); }
-
-        .btn-download { background-color: var(--primary-color); color: white; }
-        .btn-copy { background-color: #25D366; color: white; } /* WhatsApp Green */
-
-        /* --- प्रीव्यू कंटेनर (यह कार्ड को होल्ड करेगा) --- */
-        #preview-wrapper {
+        /* --- 2. प्रीव्यू एरिया (स्क्रीन पर फिट करने के लिए) --- */
+        #preview-container {
             width: 100%;
+            overflow: visible;
             display: flex;
             justify-content: center;
-            overflow: hidden; /* ताकि मोबाइल पर स्क्रॉल न आए */
-            margin-bottom: 50px;
-        }
-
-        /* --- मुख्य निमंत्रण कार्ड (फिक्स साइज - 800px) --- */
-        /* यह हमेशा 800px रहेगा ताकि इमेज क्वालिटी HD रहे */
-        #letter-card {
-            width: 800px; 
-            min-width: 800px;
-            background-color: var(--bg-color);
-            padding: 60px 50px;
-            border: 8px double var(--primary-color);
+            /* कार्ड को सेंटर करने के लिए */
             position: relative;
-            color: var(--text-color);
-            background-image: linear-gradient(to bottom, #FFF8E7, #fff5e6);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            box-sizing: border-box;
-            transform-origin: top center; /* ज़ूमिंग के लिए */
+            margin-bottom: 50px; 
         }
 
-        /* कार्ड के अंदर का डिज़ाइन */
-        .corner-decoration {
+        /* --- 3. असली कार्ड (फिक्स साइज 800px) --- */
+        #card-capture {
+            width: 800px;  /* यह साइज फिक्स रहेगी ताकि फोटो HD आये */
+            min-width: 800px;
+            background-color: #FFF8E7;
+            padding: 60px 50px;
+            box-sizing: border-box;
+            border: 8px double #8B0000;
+            color: #2c1a1a;
+            position: relative;
+            background-image: linear-gradient(to bottom, #FFF8E7, #fff5e6);
+            transform-origin: top center; /* ऊपर से छोटा होगा */
+        }
+
+        /* --- कार्ड की सजावट --- */
+        .corner {
             position: absolute;
             width: 60px;
             height: 60px;
-            border: 4px solid var(--accent-color);
-            opacity: 0.7;
+            border: 4px solid #FF8C00;
+            opacity: 0.8;
         }
-        .top-left { top: 20px; left: 20px; border-right: none; border-bottom: none; border-radius: 20px 0 0 0; }
-        .top-right { top: 20px; right: 20px; border-left: none; border-bottom: none; border-radius: 0 20px 0 0; }
-        .bottom-left { bottom: 20px; left: 20px; border-right: none; border-top: none; border-radius: 0 0 0 20px; }
-        .bottom-right { bottom: 20px; right: 20px; border-left: none; border-top: none; border-radius: 0 0 20px 0; }
+        .tl { top: 20px; left: 20px; border-right: none; border-bottom: none; }
+        .tr { top: 20px; right: 20px; border-left: none; border-bottom: none; }
+        .bl { bottom: 20px; left: 20px; border-right: none; border-top: none; }
+        .br { bottom: 20px; right: 20px; border-left: none; border-top: none; }
 
-        .header-text { text-align: center; }
-        
-        .om-namah {
-            font-size: 24px;
-            color: var(--primary-color);
-            font-weight: bold;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .main-title {
+        h1 {
             font-family: 'Rozha One', serif;
-            font-size: 36px;
-            color: var(--primary-color);
-            margin: 0;
-            text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+            color: #8B0000;
+            text-align: center;
+            font-size: 38px;
+            margin: 10px 0;
+            line-height: 1.2;
         }
 
-        .recipient-section {
-            margin-top: 40px;
-            font-size: 22px;
+        .sub-head {
+            text-align: center;
+            color: #FF8C00;
             font-weight: bold;
-            border-bottom: 2px dashed #dcbfa8;
-            padding-bottom: 15px;
+            font-size: 22px;
+            margin-bottom: 30px;
         }
 
-        .content-body {
-            font-size: 20px;
-            text-align: justify;
-            line-height: 1.7;
-            margin-top: 25px;
+        .content {
+            font-size: 22px;
+            line-height: 1.6;
         }
 
-        .highlight-text {
-            color: #d35400;
-            font-weight: 700;
+        .highlight {
+            color: #8B0000;
+            font-weight: bold;
         }
 
         /* दिनांक बॉक्स */
-        .schedule-box {
-            background: rgba(255, 140, 0, 0.08);
-            border: 2px solid #ffdcb0;
-            padding: 25px;
-            margin: 30px 0;
-            border-radius: 12px;
-            text-align: center;
+        .dates-box {
+            border: 2px dashed #FF8C00;
+            background: rgba(255, 140, 0, 0.05);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 10px;
         }
 
         .date-row {
-            font-size: 22px;
-            margin: 10px 0;
-            color: #444;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
+            justify-content: space-between;
+            font-size: 22px;
+            margin: 8px 0;
+            border-bottom: 1px solid #ebd0b0;
+            padding-bottom: 5px;
         }
-
-        .date-label {
-            color: var(--primary-color);
-            font-weight: 800;
-        }
+        .date-row:last-child { border-bottom: none; }
 
         .footer {
-            margin-top: 40px;
             text-align: right;
-            font-size: 18px;
             font-weight: bold;
-            color: var(--primary-color);
+            font-size: 20px;
+            margin-top: 30px;
+            color: #8B0000;
         }
 
-        .contact-strip {
-            margin-top: 30px;
-            border-top: 2px solid var(--primary-color);
-            padding-top: 15px;
+        .contact {
             text-align: center;
-            font-size: 16px;
-            color: #666;
-            font-weight: bold;
+            margin-top: 20px;
+            font-size: 18px;
+            background: #8B0000;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
         }
 
     </style>
 </head>
-<body onload="fitCardToScreen()" onresize="fitCardToScreen()">
+<body>
 
     <div class="controls">
         <h3>निमंत्रण</h3>
@@ -290,59 +232,62 @@
     </div>
 
     <script>
-        // यह फंक्शन कार्ड को मोबाइल स्क्रीन के हिसाब से छोटा (Scale) करता है
-        function fitCardToScreen() {
-            const card = document.getElementById('letter-card');
-            const wrapper = document.getElementById('preview-wrapper');
+        // 1. नाम अपडेट करने का फंक्शन
+        function updateCard() {
+            document.getElementById('outName').innerText = document.getElementById('inpName').value || "श्री/श्रीमती .......................... जी";
+            document.getElementById('outPost').innerText = document.getElementById('inpPost').value || "...........................................";
+        }
+
+        // 2. मोबाइल स्क्रीन पर कार्ड को फिट करने का जादू (Scaling Logic)
+        function fitToScreen() {
+            const card = document.getElementById('card-capture');
+            const container = document.getElementById('preview-container');
+            
+            // मोबाइल की चौड़ाई नापो
             const screenWidth = window.innerWidth;
-            
-            // मोबाइल पर मार्जिन (Padding) के लिए 20px घटाया
-            const availableWidth = screenWidth - 20; 
-            const cardBaseWidth = 800; // कार्ड की असली चौड़ाई
+            const margin = 20; // थोड़ा मार्जिन
+            const cardWidth = 800; // कार्ड की असली चौड़ाई
 
-            if (availableWidth < cardBaseWidth) {
-                const scale = availableWidth / cardBaseWidth;
-                card.style.transform = `scale(${scale})`;
-                // स्केल होने पर नीचे खाली जगह न बचे, इसलिए हाइट एडजस्ट करें
-                wrapper.style.height = `${card.offsetHeight * scale}px`;
-            } else {
-                card.style.transform = 'scale(1)';
-                wrapper.style.height = 'auto';
-            }
+            // स्केल फैक्टर निकालो (जैसे: 0.45 गुना छोटा करो)
+            let scale = (screenWidth - margin) / cardWidth;
+            
+            // अगर स्क्रीन बड़ी है (लैपटॉप), तो स्केल 1 ही रखो
+            if (scale > 1) scale = 1;
+
+            // CSS ट्रांसफॉर्म लगाओ
+            card.style.transform = `scale(${scale})`;
+            
+            // स्केल होने के बाद नीचे बहुत खाली जगह बच जाती है, उसे ठीक करो
+            const newHeight = card.offsetHeight * scale;
+            container.style.height = `${newHeight}px`;
         }
 
-        function updateLetter() {
-            const name = document.getElementById('guestName').value;
-            const post = document.getElementById('guestPost').value;
+        // पेज लोड होते ही फिट करो और जब रोटेट हो तब भी
+        window.onload = fitToScreen;
+        window.onresize = fitToScreen;
 
-            document.getElementById('displayName').innerText = name ? name : "श्री/श्रीमती .......................... जी";
-            document.getElementById('displayPost').innerText = post ? post : "...........................................";
-        }
-
-        function downloadImage() {
-            const letter = document.getElementById("letter-card");
+        // 3. डाउनलोड फंक्शन (HD क्वालिटी के लिए ट्रिक)
+        function downloadCard() {
+            const card = document.getElementById('card-capture');
             
-            // डाउनलोड से पहले थोड़ा इंतज़ार ताकि फॉन्ट लोड हो जाए
-            window.scrollTo(0,0);
+            // (A) डाउनलोड से पहले कार्ड का स्केल हटा दो (ताकि इमेज धुंधली न हो)
+            const currentTransform = card.style.transform;
+            card.style.transform = 'none'; // अस्थायी रूप से असली साइज़
             
-            html2canvas(letter, {
-                scale: 2, // 2x क्वालिटी (HD)
+            // (B) कैनवास बनाओ
+            html2canvas(card, {
+                scale: 2, // 2x क्वालिटी (Sharp Text)
                 useCORS: true,
-                backgroundColor: null
+                scrollY: -window.scrollY // स्क्रॉल की वजह से कटने से बचाए
             }).then(canvas => {
+                // (C) लिंक बनाओ और डाउनलोड करो
                 const link = document.createElement('a');
-                link.download = 'VIP_Invitation_Ahirori.png';
-                link.href = canvas.toDataURL("image/png");
+                link.download = 'VIP_Invitation_Ahirori.jpg';
+                link.href = canvas.toDataURL("image/jpeg", 0.9);
                 link.click();
-            });
-        }
 
-        function copyText() {
-            const name = document.getElementById('guestName').value || "महोदय";
-            const text = `॥ जय श्री राधे राधे ॥\n\nप्रति, ${name}\n\nनैमिषारण्य क्षेत्र अहिरोरी बाबा श्री भूतनाथ के प्रसिद्ध दरबार श्री महर्षि मंगलगिरि आश्रम में 12वीं श्री रुद्र महायज्ञ (6-15 फरवरी 2026) में आप सादर आमंत्रित हैं।\n\nप्रमुख तिथियाँ:\n🔸 कलश यात्रा: 6 फरवरी 2026\n🔸 पूर्णाहुति: 14 फरवरी 2026\n🔸 भंडारा: 15 फरवरी 2026\n\nनिवेदक: समस्त भक्त वृन्द\nसंपर्क: 9580094376`;
-            
-            navigator.clipboard.writeText(text).then(() => {
-                alert("टेक्स्ट कॉपी हो गया! WhatsApp पर पेस्ट करें।");
+                // (D) वापस पहले जैसा छोटा कर दो (मोबाइल व्यू)
+                card.style.transform = currentTransform;
             });
         }
     </script>
