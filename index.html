@@ -1,392 +1,413 @@
 <!DOCTYPE html>
 <html lang="hi">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIP आमंत्रण - अहिरोरी</title>
-    <link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <style>
-        :root {
-            --primary-red: #8B0000;
-            --primary-orange: #FF8C00;
-            --primary-color: #8B0000;
-            --bg-cream: #FFF8E7;
-            --text-dark: #2c1a1a;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        * {
-            box-sizing: border-box;
-        }
+  <title>VIP आमंत्रण - अहिरोरी</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    :root {
+      --primary-red: #8B0000;
+      --primary-orange: #FF8C00;
+      --primary-color: #8B0000;
+      --bg-cream: #FFF8E7;
+      --text-dark: #2c1a1a;
+    }
 
-        body {
-            font-family: 'Tiro Devanagari Hindi', serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            margin: 0;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
+    * {
+      box-sizing: border-box;
+    }
 
-        .controls {
-            background: white;
-            padding: 20px;
-            border-radius: 16px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-            width: 100%;
-            max-width: 500px;
-            margin-bottom: 30px;
-            text-align: center;
-            animation: slideDown 0.5s ease-out;
-        }
+    body {
+      font-family: 'Tiro Devanagari Hindi', serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      margin: 0;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
 
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    .controls {
+      background: white;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+      width: 100%;
+      max-width: 500px;
+      margin-bottom: 30px;
+      text-align: center;
+      animation: slideDown 0.5s ease-out;
+    }
 
-        .controls h3 {
-            color: var(--primary-red);
-            font-size: 24px;
-            margin: 0 0 20px 0;
-            font-weight: bold;
-        }
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
 
-        .input-group {
-            margin-bottom: 15px;
-        }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-        .input-group input {
-            width: 100%;
-            padding: 14px 16px;
-            margin-bottom: 12px;
-            border: 2px solid #e5e7eb;
-            border-radius: 10px;
-            font-size: 16px;
-            font-family: 'Tiro Devanagari Hindi', serif;
-            transition: all 0.3s ease;
-        }
+    .controls h3 {
+      color: var(--primary-red);
+      font-size: 24px;
+      margin: 0 0 20px 0;
+      font-weight: bold;
+    }
 
-        .input-group input:focus {
-            outline: none;
-            border-color: var(--primary-orange);
-            box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.1);
-        }
+    .input-group {
+      margin-bottom: 15px;
+    }
 
-        .btn-group {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
+    .input-group select,
+    .input-group input {
+      width: 100%;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 2px solid #e5e7eb;
+      border-radius: 10px;
+      font-size: 16px;
+      font-family: 'Tiro Devanagari Hindi', serif;
+      transition: all 0.3s ease;
+    }
 
-        .btn-download, .btn-copy {
-            border: none;
-            padding: 14px 25px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            transition: all 0.3s ease;
-            font-family: 'Tiro Devanagari Hindi', serif;
-        }
+    .input-group select:focus,
+    .input-group input:focus {
+      outline: none;
+      border-color: var(--primary-orange);
+      box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.1);
+    }
 
-        .btn-download {
-            background: linear-gradient(135deg, var(--primary-red) 0%, #a01010 100%);
-            color: white;
-            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
-        }
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
 
-        .btn-download:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(139, 0, 0, 0.4);
-        }
+    .btn-download,
+    .btn-copy {
+      border: none;
+      padding: 14px 25px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.3s ease;
+      font-family: 'Tiro Devanagari Hindi', serif;
+    }
 
-        .btn-download:active {
-            transform: translateY(0);
-        }
+    .btn-download {
+      background: linear-gradient(135deg, var(--primary-red) 0%, #a01010 100%);
+      color: white;
+      box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+    }
 
-        .btn-copy {
-            background: linear-gradient(135deg, var(--primary-orange) 0%, #ffa020 100%);
-            color: white;
-            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
-        }
+    .btn-download:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(139, 0, 0, 0.4);
+    }
 
-        .btn-copy:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 140, 0, 0.4);
-        }
+    .btn-download:active {
+      transform: translateY(0);
+    }
 
-        #preview-wrapper {
-            width: 100%;
-            max-width: 800px;
-            overflow: hidden;
-        }
+    .btn-copy {
+      background: linear-gradient(135deg, var(--primary-orange) 0%, #ffa020 100%);
+      color: white;
+      box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+    }
 
-        #letter-card {
-            background: linear-gradient(135deg, #FFF8E7 0%, #FFF5DC 100%);
-            border: 8px solid var(--primary-red);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-        }
+    .btn-copy:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 140, 0, 0.4);
+    }
 
-        .corner-decoration {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            border: 3px solid var(--primary-orange);
-        }
+    #preview-wrapper {
+      width: 100%;
+      max-width: 800px;
+      overflow: hidden;
+    }
 
-        .corner-decoration.top-left {
-            top: 20px;
-            left: 20px;
-            border-right: none;
-            border-bottom: none;
-        }
+    #letter-card {
+      background: linear-gradient(135deg, #FFF8E7 0%, #FFF5DC 100%);
+      border: 8px solid var(--primary-red);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+    }
 
-        .corner-decoration.top-right {
-            top: 20px;
-            right: 20px;
-            border-left: none;
-            border-bottom: none;
-        }
+    .corner-decoration {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--primary-orange);
+    }
 
-        .corner-decoration.bottom-left {
-            bottom: 20px;
-            left: 20px;
-            border-right: none;
-            border-top: none;
-        }
+    .corner-decoration.top-left {
+      top: 20px;
+      left: 20px;
+      border-right: none;
+      border-bottom: none;
+    }
 
-        .corner-decoration.bottom-right {
-            bottom: 20px;
-            right: 20px;
-            border-left: none;
-            border-top: none;
-        }
+    .corner-decoration.top-right {
+      top: 20px;
+      right: 20px;
+      border-left: none;
+      border-bottom: none;
+    }
 
-        .header-text {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+    .corner-decoration.bottom-left {
+      bottom: 20px;
+      left: 20px;
+      border-right: none;
+      border-top: none;
+    }
 
-        .om-namah {
-            display: block;
-            color: var(--primary-red);
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
+    .corner-decoration.bottom-right {
+      bottom: 20px;
+      right: 20px;
+      border-left: none;
+      border-top: none;
+    }
 
-        .main-title {
-            color: var(--primary-red);
-            font-size: 32px;
-            font-weight: bold;
-            margin: 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
+    .header-text {
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-        .recipient-section {
-            margin: 30px 0;
-            font-size: 20px;
-            line-height: 1.8;
-            color: var(--text-dark);
-        }
+    .om-namah {
+      display: block;
+      color: var(--primary-red);
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
 
-        .content-body {
-            margin: 25px 0;
-            line-height: 2;
-            font-size: 18px;
-            text-align: justify;
-        }
+    .main-title {
+      color: var(--primary-red);
+      font-size: 32px;
+      font-weight: bold;
+      margin: 0;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-        .content-body p {
-            margin-bottom: 15px;
-        }
+    .recipient-section {
+      margin: 30px 0;
+      font-size: 20px;
+      line-height: 1.8;
+      color: var(--text-dark);
+    }
 
-        .highlight-text {
-            color: var(--primary-red);
-            font-weight: bold;
-        }
+    .content-body {
+      margin: 25px 0;
+      line-height: 2;
+      font-size: 18px;
+      text-align: justify;
+    }
 
-        .schedule-box {
-            background: white;
-            border: 3px solid var(--primary-orange);
-            border-radius: 15px;
-            padding: 25px;
-            margin: 30px 0;
-            text-align: center;
-        }
+    .content-body p {
+      margin-bottom: 15px;
+    }
 
-        .date-row {
-            margin: 12px 0;
-            font-size: 20px;
-            line-height: 1.6;
-        }
+    .highlight-text {
+      color: var(--primary-red);
+      font-weight: bold;
+    }
 
-        .date-label {
-            color: var(--primary-red);
-            font-weight: bold;
-        }
+    .schedule-box {
+      background: white;
+      border: 3px solid var(--primary-orange);
+      border-radius: 15px;
+      padding: 25px;
+      margin: 30px 0;
+      text-align: center;
+    }
 
-        .footer {
-            margin-top: 40px;
-            text-align: right;
-            font-size: 18px;
-            line-height: 1.8;
-            color: var(--text-dark);
-        }
+    .date-row {
+      margin: 12px 0;
+      font-size: 20px;
+      line-height: 1.6;
+    }
 
-        .contact-strip {
-            background: var(--primary-orange);
-            color: white;
-            text-align: center;
-            padding: 15px;
-            margin-top: 30px;
-            border-radius: 10px;
-            font-size: 16px;
-        }
+    .date-label {
+      color: var(--primary-red);
+      font-weight: bold;
+    }
 
-        @media (max-width: 600px) {
-            #letter-card {
-                padding: 25px;
-                border-width: 5px;
-            }
+    .footer {
+      margin-top: 40px;
+      text-align: right;
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--text-dark);
+    }
 
-            .main-title {
-                font-size: 24px;
-            }
+    .contact-strip {
+      background: var(--primary-orange);
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+      border-radius: 10px;
+      font-size: 16px;
+    }
 
-            .content-body, .recipient-section {
-                font-size: 16px;
-            }
+    @media (max-width: 600px) {
+      #letter-card {
+        padding: 25px;
+        border-width: 5px;
+      }
 
-            .date-row {
-                font-size: 16px;
-            }
-        }
-    </style>
+      .main-title {
+        font-size: 24px;
+      }
+
+      .content-body,
+      .recipient-section {
+        font-size: 16px;
+      }
+
+      .date-row {
+        font-size: 16px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="controls">
-        <h3>निमंत्रण बनाएं</h3>
-        <div class="input-group">
-            <input type="text" id="guestName" placeholder="अतिथि का नाम (उदा: माननीय विधायक जी)" oninput="updateLetter()">
-            <input type="text" id="guestPost" placeholder="पद/स्थान (उदा: सदर विधान सभा, हरदोई)" oninput="updateLetter()">
-        </div>
-        
-        <div class="btn-group">
-            <button class="btn-download" onclick="downloadImage()">📸 फोटो डाउनलोड करें</button>
-            <button class="btn-copy" onclick="copyText()">💬 टेक्स्ट कॉपी करें</button>
-        </div>
-        <p style="font-size: 12px; color: #888; margin-top: 10px;">फोटो अपने आप मोबाइल गैलरी में सेव हो जाएगी।</p>
+  <div class="controls">
+    <h3>निमंत्रण बनाएं</h3>
+    <div class="input-group">
+      <select id="prefix" onchange="updateLetter()">
+        <option value="श्री">श्री</option>
+        <option value="श्रीमती">श्रीमती</option>
+      </select>
+      <input type="text" id="guestName" placeholder="अतिथि का नाम (उदा: माननीय विधायक)" oninput="updateLetter()">
+      <input type="text" id="guestPost" placeholder="पद/स्थान (उदा: सदर विधान सभा, हरदोई)" oninput="updateLetter()">
     </div>
 
-    <div id="preview-wrapper">
-        <div id="letter-card">
-            <div class="corner-decoration top-left"></div>
-            <div class="corner-decoration top-right"></div>
-            <div class="corner-decoration bottom-left"></div>
-            <div class="corner-decoration bottom-right"></div>
-
-            <div class="header-text">
-                <span class="om-namah">॥ श्री गणेशाय नमः ॥ &nbsp; ॥ ॐ नमः शिवाय ॥</span>
-                <h1 class="main-title">१२वीं श्री रुद्र महायज्ञ महोत्सव</h1>
-            </div>
-
-            <div class="recipient-section">
-                प्रति,<br>
-                <span id="displayName" style="color:#000;">श्री/श्रीमती .......................... जी</span><br>
-                <span id="displayPost" style="font-weight:normal; font-size: 18px; color: #555;">...........................................</span>
-            </div>
-
-            <div class="content-body">
-                <p><strong>विषय: महाशिवरात्रि पर्व पर महायज्ञ में गरिमामयी उपस्थिति हेतु।</strong></p>
-                
-                <p>महोदय/महोदया,</p>
-                <p>
-                    अत्यंत हर्ष का विषय है कि <strong>नैमिषारण्य क्षेत्र</strong> स्थित <strong>अहिरोरी बाबा श्री भूतनाथ</strong> के सिद्ध दरबार, <strong>श्री महर्षि मंगलगिरि आश्रम</strong> में <span class="highlight-text">'12वीं श्री रुद्र महायज्ञ'</span> का भव्य आयोजन सुनिश्चित हुआ है।
-                </p>
-                <p>
-                    यह पुनीत अनुष्ठान <strong>6 फरवरी से 15 फरवरी 2025</strong> तक संपन्न होगा। आपसे करबद्ध प्रार्थना है कि आप अपने व्यस्त समय में से कुछ क्षण निकालकर इस धर्म-यज्ञ में पधारें और हमारा मान बढ़ाएं।
-                </p>
-            </div>
-
-            <div class="schedule-box">
-                <div style="font-size: 24px; color: var(--primary-color); margin-bottom: 15px; text-decoration: underline;"><strong>॥ कार्यक्रम की रूपरेखा ॥</strong></div>
-                
-                <div class="date-row">
-                    <span class="date-label">कलश यात्रा:</span> 6 फरवरी 2026
-                </div>
-                <div class="date-row">
-                    <span class="date-label">हवन पूर्णाहुति:</span> 14 फरवरी 2026
-                </div>
-                <div class="date-row">
-                    <span class="date-label">रूद्राभिषेक/भंडारा:</span> 15 फरवरी 2026
-                </div>
-            </div>
-
-            <div class="footer">
-                विनीत,<br>
-                समस्त भक्त वृन्द एवं आयोजक मंडल<br>
-                श्री महर्षि मंगलगिरि सेवा समिति, अहिरोरी
-            </div>
-
-            <div class="contact-strip">
-                <strong>संपर्क: रुद्रेश शुक्ल (9580094376), अमित सिंह 'पिन्टू' (9792488383)</strong>
-            </div>
-        </div>
+    <div class="btn-group">
+      <button class="btn-download" onclick="downloadImage()">📸 फोटो डाउनलोड करें</button>
+      <button class="btn-copy" onclick="copyText()">💬 टेक्स्ट कॉपी करें</button>
     </div>
+    <p style="font-size: 12px; color: #888; margin-top: 10px;">फोटो अपने आप मोबाइल गैलरी में सेव हो जाएगी।</p>
+  </div>
 
-    <script>
-        function updateLetter() {
-            const name = document.getElementById('guestName').value;
-            const post = document.getElementById('guestPost').value;
-            
-            document.getElementById('displayName').innerText = name || "श्री/श्रीमती .......................... जी";
-            document.getElementById('displayPost').innerText = post || "...........................................";
-        }
+  <div id="preview-wrapper">
+    <div id="letter-card">
+      <div class="corner-decoration top-left"></div>
+      <div class="corner-decoration top-right"></div>
+      <div class="corner-decoration bottom-left"></div>
+      <div class="corner-decoration bottom-right"></div>
 
-        function downloadImage() {
-            const card = document.getElementById('letter-card');
-            
-            html2canvas(card, {
-                scale: 2,
-                useCORS: true,
-                backgroundColor: '#FFF8E7',
-                scrollY: -window.scrollY
-            }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = 'VIP_Nimantran_Ahirori.jpg';
-                link.href = canvas.toDataURL("image/jpeg", 0.95);
-                link.click();
-            });
-        }
+      <div class="header-text">
+        <span class="om-namah">॥ श्री गणेशाय नमः ॥ &nbsp; ॥ ॐ नमः शिवाय ॥</span>
+        <h1 class="main-title">१२वीं श्री रुद्र महायज्ञ महोत्सव</h1>
+      </div>
 
-        function copyText() {
-            const name = document.getElementById('guestName').value || "श्री/श्रीमती .......................... जी";
-            const post = document.getElementById('guestPost').value || "...........................................";
-            
-            const text = `॥ श्री गणेशाय नमः ॥ ॥ ॐ नमः शिवाय ॥
+      <div class="recipient-section">
+        प्रति,<br>
+        <span id="displayName" style="color:red; font-weight: bold;">श्री .......................... जी</span><br>
+        <span id="displayPost" style="font-weight:normal; font-size: 18px; color: red;">...........................................</span>
+      </div>
+
+      <div class="content-body">
+        <p><strong>विषय: महाशिवरात्रि पर्व पर महायज्ञ में गरिमामयी उपस्थिति हेतु।</strong></p>
+
+        <p>महोदय/महोदया,</p>
+        <p>
+          अत्यंत हर्ष का विषय है कि <strong>नैमिषारण्य क्षेत्र</strong> स्थित <strong>अहिरोरी बाबा श्री भूतनाथ</strong> के सिद्ध दरबार, <strong>श्री महर्षि मंगलगिरि आश्रम</strong> में <span class="highlight-text">'12वीं श्री रुद्र महायज्ञ'</span> का भव्य आयोजन सुनिश्चित हुआ है।
+        </p>
+        <p>
+          यह पुनीत अनुष्ठान <strong>6 फरवरी से 15 फरवरी 2025</strong> तक संपन्न होगा। आपसे करबद्ध प्रार्थना है कि आप अपने व्यस्त समय में से कुछ क्षण निकालकर इस धर्म-यज्ञ में पधारें और हमारा मान बढ़ाएं।
+        </p>
+      </div>
+
+      <div class="schedule-box">
+        <div style="font-size: 24px; color: var(--primary-color); margin-bottom: 15px; text-decoration: underline;"><strong>॥ कार्यक्रम की रूपरेखा ॥</strong></div>
+
+        <div class="date-row">
+          <span class="date-label">कलश यात्रा:</span> 6 फरवरी 2026
+        </div>
+        <div class="date-row">
+          <span class="date-label">हवन पूर्णाहुति:</span> 14 फरवरी 2026
+        </div>
+        <div class="date-row">
+          <span class="date-label">रूद्राभिषेक/भंडारा:</span> 15 फरवरी 2026
+        </div>
+      </div>
+
+      <div class="footer">
+        विनीत,<br>
+        समस्त भक्त वृन्द एवं आयोजक मंडल<br>
+        श्री महर्षि मंगलगिरि सेवा समिति, अहिरोरी
+      </div>
+
+      <div class="contact-strip">
+        <strong>संपर्क: रुद्रेश शुक्ल (9580094376), अमित सिंह 'पिन्टू' (9792488383)</strong>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function updateLetter() {
+      const prefix = document.getElementById('prefix').value;
+      const name = document.getElementById('guestName').value;
+      const post = document.getElementById('guestPost').value;
+      
+      if (name) {
+        document.getElementById('displayName').innerText = `${prefix} ${name} जी`;
+      } else {
+        document.getElementById('displayName').innerText = `${prefix} .......................... जी`;
+      }
+      
+      document.getElementById('displayPost').innerText = post || "...........................................";
+    }
+
+    function downloadImage() {
+      const card = document.getElementById('letter-card');
+      html2canvas(card, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: '#FFF8E7',
+        scrollY: -window.scrollY
+      }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'VIP_Nimantran_Ahirori.jpg';
+        link.href = canvas.toDataURL("image/jpeg", 0.95);
+        link.click();
+      });
+    }
+
+    function copyText() {
+      const prefix = document.getElementById('prefix').value;
+      const name = document.getElementById('guestName').value;
+      const post = document.getElementById('guestPost').value;
+      
+      const displayName = name ? `${prefix} ${name} जी` : `${prefix} .......................... जी`;
+      const displayPost = post || "...........................................";
+      
+      const text = `॥ श्री गणेशाय नमः ॥ ॥ ॐ नमः शिवाय ॥
 
 १२वीं श्री रुद्र महायज्ञ महोत्सव
 
 प्रति,
-${name}
-${post}
+${displayName}
+${displayPost}
 
 विषय: महाशिवरात्रि पर्व पर महायज्ञ में गरिमामयी उपस्थिति हेतु।
 
@@ -406,13 +427,13 @@ ${post}
 श्री महर्षि मंगलगिरि सेवा समिति, अहिरोरी
 
 संपर्क: रुद्रेश शुक्ल (9580094376), अमित सिंह 'पिन्टू' (9792488383)`;
-
-            navigator.clipboard.writeText(text).then(() => {
-                alert('✅ टेक्स्ट कॉपी हो गया!');
-            }).catch(() => {
-                alert('❌ कॉपी नहीं हो पाया। कृपया फिर से कोशिश करें।');
-            });
-        }
-    </script>
+      navigator.clipboard.writeText(text).then(() => {
+        alert('✅ टेक्स्ट कॉपी हो गया!');
+      }).catch(() => {
+        alert('❌ कॉपी नहीं हो पाया। कृपया फिर से कोशिश करें।');
+      });
+    }
+  </script>
 </body>
+
 </html>
